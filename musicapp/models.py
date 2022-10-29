@@ -6,14 +6,15 @@ from django.db import models
 class Artiste (models.Model):
     first_name=models.CharField(max_length=20)
     last_name=models.CharField(max_length=20)
-    age=models.CharField(max_lenght=3)
+    age= models.IntegerField(max_lenght=3)
 
 class Song (models.Model):
-    title=("Fire on the mountain")
-    date_released= 2007
-    likes = YES
-    artiste_id = ("Asa")
+    title = models.CharField(max_length=200)
+    date_released = models.DateField(max_length=10)
+    likes = models.IntegerField()
+    artiste_id = models.ForeignKey(Artiste, on_delete=models.CASCADE)
 
 class Lyrics (models.Model):
-    content = ("")
-    song_id = ("")
+    content = models.TextField()
+    song_id = models.ForeignKey(Song, on_delete=models.CASCADE)
+
